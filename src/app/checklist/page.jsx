@@ -33,7 +33,7 @@ export default function ChecklistPage() {
           <Checklist
             key={checklist.id}
             checklist={checklist}
-            onDelete={handleDeleteChecklist}
+            onDelete={() => handleDeleteChecklist(checklist.id)}
           />
         ))}
       </div>

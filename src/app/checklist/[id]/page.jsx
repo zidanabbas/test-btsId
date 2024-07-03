@@ -1,7 +1,6 @@
 "use client";
-import React from "react";
-import { useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
+import React, { useEffect, useState } from "react";
+import { useRouter } from "next/navigation"; // Corrected import path
 export default function ChecklistDetailPage() {
   const router = useRouter();
   const { id } = router.query;

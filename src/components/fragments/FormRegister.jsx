@@ -19,14 +19,13 @@ export default function FormRegister() {
     };
 
     try {
-      await register(formData, (status, data) => {
-        if (status) {
-          console.log("Register success:", data);
-          router.push("/login");
-        } else {
-          setRegisterFailed(data.errorMessage || "Register failed");
-        }
-      });
+      const response = await register(formData);
+      if (response.status === 200) {
+        console.log("Register success:", response.data);
+        router.push("/login");
+      } else {
+        setRegisterFailed(response.data.errorMessage || "Register failed");
+      }
     } catch (error) {
       console.error("Register error:", error);
       setRegisterFailed("Register failed");

@@ -1,8 +1,9 @@
 "use client";
 import { useState } from "react";
-import router from "next/navigation";
+import { useRouter } from "next/navigation";
 
 function CreateChecklist() {
+  const router = useRouter();
   const [checklistName, setChecklistName] = useState("");
 
   const handleSubmit = async (e) => {
@@ -18,7 +19,11 @@ function CreateChecklist() {
       if (!response.ok) {
         throw new Error("Failed to create checklist");
       }
-      router.push("/checklists");
+      const data = await response.json();
+      if (data.error) {
+        throw new Error(data.error);
+      }
+      router.push(`/checklist/${data.id}`);
     } catch (error) {
       console.error("Error creating checklist:", error);
     }

@@ -1,7 +1,7 @@
 "use client";
 import React, { useState } from "react";
 
-export default function ChecklistItem() {
+export default function ChecklistItem({ item, onUpdate }) {
   const [itemName, setItemName] = useState(item.name);
 
   const handleUpdate = async () => {
@@ -24,6 +24,11 @@ export default function ChecklistItem() {
       console.error("Error updating checklist item:", error);
     }
   };
+
+  const handleStatusChange = () => {
+    // Assuming handleStatusChange is defined elsewhere or imported
+  };
+
   return (
     <div
       className={`flex items-center justify-between bg-gray-200 rounded p-4 mb-4 ${
@@ -31,7 +36,7 @@ export default function ChecklistItem() {
       }`}
     >
       <span className={`text-lg ${item.completed ? "line-through" : ""}`}>
-        {item.name}
+        {itemName}
       </span>
       <button
         onClick={handleStatusChange}
